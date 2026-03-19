@@ -30,6 +30,11 @@ display:block;
 margin:auto;
 }
 
+/* 🔥 CLAVE PARA CELULAR */
+canvas {
+touch-action: none;
+}
+
 input { width:100%; padding:8px; }
 
 input[type="checkbox"] {
@@ -185,6 +190,7 @@ emp=n;
 }
 
 canvas.addEventListener("pointerdown", e=>{
+e.preventDefault();
 if(modo==="dibujar"){
 dibujando=true;
 ctx.beginPath();
@@ -195,6 +201,7 @@ ctx.fillText(emp, e.offsetX, e.offsetY);
 });
 
 canvas.addEventListener("pointermove", e=>{
+e.preventDefault();
 if(!dibujando) return;
 ctx.lineTo(e.offsetX, e.offsetY);
 ctx.stroke();
