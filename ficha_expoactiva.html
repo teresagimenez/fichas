@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ficha Expoactiva</title>
+
+<style>
+body { font-family: Arial; padding:10px; }
+.screen { display:none; }
+.active { display:block; }
+
+.card {
+border:1px solid #ccc;
+padding:15px;
+border-radius:10px;
+}
+
+button {
+width:100%;
+padding:12px;
+margin-top:10px;
+font-size:16px;
+}
+
+canvas, img {
+border:2px solid black;
+width:300px;
+height:400px;
+display:block;
+margin:auto;
+}
+
+input { width:100%; padding:8px; }
+
+input[type="checkbox"] {
+vertical-align: middle;
+margin-right: 6px;
+}
+
+label {
+display:block;
+margin-top:5px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PANTALLA 1 -->
+<div id="s1" class="active card">
+<h2>Grupo</h2>
+
+<label>Nombre de los estudiantes:</label>
+<input id="grupo" placeholder="Ej: Juan, María, Lucas">
+
+<button onclick="next(2)">Siguiente</button>
+</div>
+
+<!-- PANTALLA 2 -->
+<div id="s2" class="screen card">
+<h2>Empresa 1</h2>
+<input id="n1" placeholder="Nombre">
+
+<h3>Sector</h3>
+<label><input type="checkbox" value="Maquinaria agrícola"> Maquinaria agrícola</label>
+<label><input type="checkbox" value="Ganadería"> Ganadería</label>
+<label><input type="checkbox" value="Agricultura"> Agricultura</label>
+<label><input type="checkbox" value="Tecnología / automatización"> Tecnología / automatización</label>
+<label><input type="checkbox" value="Insumos"> Insumos</label>
+<label><input type="checkbox" value="Energía"> Energía</label>
+<label><input type="checkbox" value="Educación / instituciones"> Educación / instituciones</label>
+<label><input type="checkbox" value="Otros"> Otros</label>
+
+<h3>Actividad</h3>
+<label><input type="checkbox" value="Producción"> Producción</label>
+<label><input type="checkbox" value="Venta"> Venta</label>
+<label><input type="checkbox" value="Servicios"> Servicios</label>
+<label><input type="checkbox" value="Investigación"> Investigación</label>
+<label><input type="checkbox" value="Asesoramiento técnico"> Asesoramiento técnico</label>
+<label><input type="checkbox" value="Capacitación"> Capacitación</label>
+<label><input type="checkbox" value="Otros"> Otros</label>
+
+<button onclick="next(3)">Siguiente</button>
+</div>
+
+<!-- PANTALLA 3 -->
+<div id="s3" class="screen card">
+<h2>Empresa 2</h2>
+<input id="n2" placeholder="Nombre">
+
+<h3>Sector</h3>
+<label><input type="checkbox" value="Maquinaria agrícola"> Maquinaria agrícola</label>
+<label><input type="checkbox" value="Ganadería"> Ganadería</label>
+<label><input type="checkbox" value="Agricultura"> Agricultura</label>
+<label><input type="checkbox" value="Tecnología / automatización"> Tecnología / automatización</label>
+<label><input type="checkbox" value="Insumos"> Insumos</label>
+<label><input type="checkbox" value="Energía"> Energía</label>
+<label><input type="checkbox" value="Educación / instituciones"> Educación / instituciones</label>
+<label><input type="checkbox" value="Otros"> Otros</label>
+
+<h3>Actividad</h3>
+<label><input type="checkbox" value="Producción"> Producción</label>
+<label><input type="checkbox" value="Venta"> Venta</label>
+<label><input type="checkbox" value="Servicios"> Servicios</label>
+<label><input type="checkbox" value="Investigación"> Investigación</label>
+<label><input type="checkbox" value="Asesoramiento técnico"> Asesoramiento técnico</label>
+<label><input type="checkbox" value="Capacitación"> Capacitación</label>
+<label><input type="checkbox" value="Otros"> Otros</label>
+
+<button onclick="next(4)">Siguiente</button>
+</div>
+
+<!-- PANTALLA 4 -->
+<div id="s4" class="screen card">
+<h2>Empresa 3</h2>
+<input id="n3" placeholder="Nombre">
+
+<h3>Sector</h3>
+<label><input type="checkbox" value="Maquinaria agrícola"> Maquinaria agrícola</label>
+<label><input type="checkbox" value="Ganadería"> Ganadería</label>
+<label><input type="checkbox" value="Agricultura"> Agricultura</label>
+<label><input type="checkbox" value="Tecnología / automatización"> Tecnología / automatización</label>
+<label><input type="checkbox" value="Insumos"> Insumos</label>
+<label><input type="checkbox" value="Energía"> Energía</label>
+<label><input type="checkbox" value="Educación / instituciones"> Educación / instituciones</label>
+<label><input type="checkbox" value="Otros"> Otros</label>
+
+<h3>Actividad</h3>
+<label><input type="checkbox" value="Producción"> Producción</label>
+<label><input type="checkbox" value="Venta"> Venta</label>
+<label><input type="checkbox" value="Servicios"> Servicios</label>
+<label><input type="checkbox" value="Investigación"> Investigación</label>
+<label><input type="checkbox" value="Asesoramiento técnico"> Asesoramiento técnico</label>
+<label><input type="checkbox" value="Capacitación"> Capacitación</label>
+<label><input type="checkbox" value="Otros"> Otros</label>
+
+<button onclick="next(5)">Plano</button>
+</div>
+
+<!-- PLANO -->
+<div id="s5" class="screen card">
+<h2>Plano</h2>
+
+<button onclick="modo='dibujar'">✏️ Dibujar</button>
+<button onclick="setEmp(1)">📍 Empresa 1</button>
+<button onclick="setEmp(2)">📍 Empresa 2</button>
+<button onclick="setEmp(3)">📍 Empresa 3</button>
+
+<canvas id="canvas" width="300" height="400"></canvas>
+
+<button onclick="limpiarCanvas()">🧹 Limpiar mapa</button>
+<button onclick="next(6)">Resumen</button>
+</div>
+
+<!-- RESUMEN -->
+<div id="s6" class="screen card">
+<h2>Resumen</h2>
+<div id="res"></div>
+<img id="img">
+<button onclick="next(1)">Reiniciar</button>
+</div>
+
+<script>
+
+function next(n){
+document.querySelectorAll(".card").forEach(d=>d.classList.remove("active"));
+if(n===6) generarResumen();
+document.getElementById("s"+n).classList.add("active");
+window.scrollTo({ top:0, behavior:"smooth" });
+}
+
+const canvas=document.getElementById("canvas");
+const ctx=canvas.getContext("2d");
+
+ctx.lineWidth=3;
+ctx.lineCap="round";
+
+let dibujando=false;
+let modo="dibujar";
+let emp=1;
+
+function setEmp(n){
+modo="marcar";
+emp=n;
+}
+
+canvas.addEventListener("pointerdown", e=>{
+if(modo==="dibujar"){
+dibujando=true;
+ctx.beginPath();
+ctx.moveTo(e.offsetX, e.offsetY);
+} else {
+ctx.fillText(emp, e.offsetX, e.offsetY);
+}
+});
+
+canvas.addEventListener("pointermove", e=>{
+if(!dibujando) return;
+ctx.lineTo(e.offsetX, e.offsetY);
+ctx.stroke();
+});
+
+canvas.addEventListener("pointerup", ()=>dibujando=false);
+canvas.addEventListener("pointerleave", ()=>dibujando=false);
+
+function limpiarCanvas(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+}
+
+function obtenerDatos(id){
+let div = document.getElementById(id);
+
+let sectores = [...div.querySelectorAll("h3:nth-of-type(1) ~ label input:checked")]
+.map(c => c.value);
+
+let actividades = [...div.querySelectorAll("h3:nth-of-type(2) ~ label input:checked")]
+.map(c => c.value);
+
+return {
+sectores: sectores.length ? sectores.join(", ") : "—",
+actividades: actividades.length ? actividades.join(", ") : "—"
+};
+}
+
+function generarResumen(){
+
+let texto=`<b>Estudiantes:</b> ${grupo.value}<br><br>`;
+
+let d1 = obtenerDatos("s2");
+let d2 = obtenerDatos("s3");
+let d3 = obtenerDatos("s4");
+
+texto+=`<b>Empresa 1:</b> ${n1.value}<br>
+Sector: ${d1.sectores}<br>
+Actividad: ${d1.actividades}<br><br>`;
+
+texto+=`<b>Empresa 2:</b> ${n2.value}<br>
+Sector: ${d2.sectores}<br>
+Actividad: ${d2.actividades}<br><br>`;
+
+texto+=`<b>Empresa 3:</b> ${n3.value}<br>
+Sector: ${d3.sectores}<br>
+Actividad: ${d3.actividades}<br><br>`;
+
+res.innerHTML=texto;
+img.src=canvas.toDataURL();
+}
+
+</script>
+
+</body>
+</html>
